@@ -3,6 +3,7 @@ package com.example.service.Impl;
 import com.example.model.User;
 import com.example.repository.UserRepository;
 import com.example.service.UserServiceI;
+import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -22,8 +23,15 @@ import java.util.List;
     }
 
     @Override
-    public User updateUser(User user, Long userId) {
-        return null;
+    public User updateUser(@NotNull User user, Long userId) {
+        User user1 = userRepository.findById(userId).get();
+
+        user1.setUserName(user.getUserName());
+        user1.setUserAge(user.getUserAge());
+        user1.setAbout(user.getAbout());
+
+        User updatedUser= userRepository.save(user1);
+        return updatedUser;
     }
 
     @Override
