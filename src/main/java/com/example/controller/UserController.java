@@ -14,7 +14,7 @@ public class UserController {
 
     @Autowired
     private UserServiceI userServiceI;
-
+// create user API
     @PostMapping("/")
     public ResponseEntity<User> createUser(){
 
